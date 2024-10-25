@@ -13,7 +13,7 @@ services:
       - ./registry-hub.yml:/etc/distribution/config.yml
       #- ./htpasswd:/auth/htpasswd
     ports:
-      - 127.0.0.1:51000:5000
+      - ${LISTEN_IP:-127.0.0.1}:51000:5000
     networks:
       - registry-net
 
@@ -31,7 +31,7 @@ services:
       - ./registry-ghcr.yml:/etc/distribution/config.yml
       #- ./htpasswd:/auth/htpasswd
     ports:
-      - 127.0.0.1:52000:5000
+      - ${LISTEN_IP:-127.0.0.1}:52000:5000
     networks:
       - registry-net
 
@@ -49,7 +49,7 @@ services:
       - ./registry-gcr.yml:/etc/distribution/config.yml
       #- ./htpasswd:/auth/htpasswd
     ports:
-      - 127.0.0.1:53000:5000
+      - ${LISTEN_IP:-127.0.0.1}:53000:5000
     networks:
       - registry-net
 
@@ -67,7 +67,7 @@ services:
       - ./registry-k8sgcr.yml:/etc/distribution/config.yml
       #- ./htpasswd:/auth/htpasswd
     ports:
-      - 127.0.0.1:54000:5000
+      - ${LISTEN_IP:-127.0.0.1}:54000:5000
     networks:
       - registry-net
 
@@ -85,7 +85,7 @@ services:
       - ./registry-k8s.yml:/etc/distribution/config.yml
       #- ./htpasswd:/auth/htpasswd
     ports:
-      - 127.0.0.1:55000:5000
+      - ${LISTEN_IP:-127.0.0.1}:55000:5000
     networks:
       - registry-net
   
@@ -103,7 +103,7 @@ services:
       - ./registry-quay.yml:/etc/distribution/config.yml
       #- ./htpasswd:/auth/htpasswd
     ports:
-      - 127.0.0.1:56000:5000
+      - ${LISTEN_IP:-127.0.0.1}:56000:5000
     networks:
       - registry-net
 
@@ -121,7 +121,7 @@ services:
       - ./registry-mcr.yml:/etc/distribution/config.yml
       #- ./htpasswd:/auth/htpasswd
     ports:
-      - 127.0.0.1:57000:5000
+      - ${LISTEN_IP:-127.0.0.1}:57000:5000
     networks:
       - registry-net
 
@@ -139,7 +139,7 @@ services:
       - ./registry-elastic.yml:/etc/distribution/config.yml
       #- ./htpasswd:/auth/htpasswd
     ports:
-      - 127.0.0.1:58000:5000
+      - ${LISTEN_IP:-127.0.0.1}:58000:5000
     networks:
       - registry-net
 
@@ -157,7 +157,7 @@ services:
       - ./registry-nvcr.yml:/etc/distribution/config.yml
       #- ./htpasswd:/auth/htpasswd
     ports:
-      - 127.0.0.1:59000:5000
+      - ${LISTEN_IP:-127.0.0.1}:59000:5000
     networks:
       - registry-net
 
