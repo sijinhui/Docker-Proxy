@@ -72,6 +72,7 @@ http {
 
 #### 5、拉取镜像报错 `tls: failed to verify certificate: x509: certificate signed by unknown authority`
 - [x] **已知问题：** 证书问题。表示证书是由一个未知的或不受信任的证书颁发机构（CA）签发的。
+- [x] **解决方案：** 修改Docker配置 `daemon.json` 添加 `insecure-registries` 并填入您的加速域名(非URL)
 
 #### 6、通过docker-compose部署，如何设置Proxy认证
 - [x] **已知问题：** 查看教程：[自建Docker镜像加速服务](https://www.dqzboy.com/8709.html)
@@ -88,13 +89,15 @@ http {
 
  - ⚠️ 注意：不要通过在UI上查看某个镜像是否被删除来判断调度程序是否已自动执行删除操作。而是查看对应代理服务的容器日志
 
+ - [x] **解决方案：** 目前 `registry` 的清理效果对于磁盘小的机器并不理想，如果并不希望镜像文件长时间缓存在本地磁盘，建议通过脚本结合系统`crontab`实现定时清理
+
  #### 9、拉取了一个镜像之后，发现UI界面没有显示？
  - [x] **已知问题：** Docker-Proxy部署的服务器上的存储空间不足。宿主机默认的挂载目录 `./registry/data`
 
  #### 10、开启认证后，配置`daemon.json`指定了代理地址，可以正常登入，但是`docker pull`镜像时无法拉取镜像
  - [x] **已知问题：** 因为对于私有镜像仓库，docker客户端对镜像的相关操作，比如pull push支持不友好（历史遗留问题）相关 [issues](https://github.com/docker/cli/issues/3793#issuecomment-1269051403)
 
- - [x] **最终解决方案：** 
+ - [x] **解决方案：** 
  - - （1）首先通过docker login <私有镜像地址>  登入私有镜像仓库，登入成功之后，会在对应的用户家目录下生成 `.docker/config.json` 配置文件
 
   - - （2）通过`vi`命令打开配置文件，然后手动在`auths`配置块里面添加官方地址`https://index.docker.io/v1/`，`auth`哈希值与你的私有镜像地址的auth保持一致，然后重启docker即可直接通过`docker pull`拉取了
@@ -122,3 +125,18 @@ docker pull nginx
  #### 11、如何配置才能让数据不保留到磁盘中？
  - [x] **已知问题：** 默认使用的存储系统为`filesystem` 使用本地磁盘存储注册表文件
  - [x] **解决方案：** 修改对应Registry的配置，将`Storage driver` 存储驱动改为 `inmemory`，⚠️ 注意：此存储驱动程序不会在运行期间保留数据。这就是为什么它只适合测试。切勿在生产中使用此驱动程序。
+
+
+  #### 12、关于Docker Hub免费拉取政策再次变更后的解决方案？
+  - [x] **已知问题：** Docker Hub从 2020年11月2日起就已经限制非付费用户的拉取频率了，只是这次又变更了拉取政策。匿名用户每小时10次，登入用户每小时100次
+  - [x] **解决方案：** 修改项目中Docker Hub对应的配置文件`registry-hub.yml` 添加Docker Hub用户，添加后重新启动Docker Registry容器即可！
+  ```
+...
+
+# username 输入docker hub账号，password 输入对应账号密码
+proxy:
+  remoteurl: https://registry-1.docker.io
+  username: 
+  password:
+  ttl: 168h 
+  ```

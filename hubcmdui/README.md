@@ -26,7 +26,7 @@
 
 ---
 
-## 📝 本地运行
+## 📝 源码构建运行
 #### 1. 克隆项目
 ```bash
 git clone git@github.com:dqzboy/Docker-Proxy.git
@@ -40,33 +40,21 @@ npm install
 
 #### 3. 启动服务
 ```bash
-node server.js 
+node server.js
 ```
 
-## 📦 Docker运行
+## 📦 Docker 方式运行
 
-- 如果不自行构建Docker镜像，可直接跳转第三步拉取镜像运行
-
-#### 1. 克隆项目（可选）
+#### 1. 下载 hubcmd-ui 镜像
 ```bash
-git clone git@github.com:dqzboy/Docker-Proxy.git
-```
-
-#### 2. 构建镜像（可选）
-```bash
-cd Docker-Proxy
-
-docker build -t hubcmd-ui .
-```
-
-#### 3. 运行容器
-```bash
-# 拉取镜像！如果你手动构建了镜像此步骤跳过
 docker pull dqzboy/hubcmd-ui:latest
-
-docker run -d -p 30080:3000 --name hubcmdui-server hubcmd-ui
 ```
 
+#### 2. 运行 hubcmd-ui 容器
+```bash
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock -p 30080:3000 --name hubcmdui-server dqzboy/hubcmd-ui
+```
+- `-v` 参数解释：左边是宿主机上的 Docker socket 文件路径，右边是容器内的映射路径
 
 ## Docker Compose 部署
 
@@ -91,57 +79,63 @@ docker logs -f [容器ID或名称]
 
 <table>
     <tr>
-        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/c7e368ca-7f1a-4311-9a10-a5f4f06d86d8"?raw=true"></td>
+        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/bfe09d99-6727-43bc-9c2d-73e34d881953"?raw=true"></td>
     </tr>
 </table>
 
 <table>
     <tr>
-        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/0024d3e7-3b9d-4a10-9079-f2b91633a5f5"?raw=true"></td>
+        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/42c4337e-44cb-4c35-bc6f-a5d21f3d1184"?raw=true"></td>
     </tr>
 </table>
 
 <table>
     <tr>
-        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/8569c5c4-4ce6-4cd4-8547-fa9816019049"?raw=true"></td>
+        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/c1e938dc-d604-475c-8689-d60b09329af8"?raw=true"></td>
     </tr>
 </table>
 
 <table>
     <tr>
-        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/b7efcd39-8757-46f9-ae68-02ca6add40e7"?raw=true"></td>
-    </tr>
-</table>
-
-> 浏览器输入 `服务器地址:30080/admin` 访问后端页面，默认登入账号密码: root/admin@123
-
-<table>
-    <tr>
-        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/e69f0473-04c1-473d-a580-6e9a85c4053c"?raw=true"></td>
+        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/1be671e5-7bd5-4d63-9f4e-8936b819ee2d"?raw=true"></td>
     </tr>
 </table>
 
 <table>
     <tr>
-        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/3ffe6a5d-da8c-436a-ae28-033fecf52770"?raw=true"></td>
+        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/f97a0a37-457f-4ffb-893e-db68b204ee33"?raw=true"></td>
+    </tr>
+</table>
+
+> 浏览器输入 `服务器地址:30080/admin` 访问后端页面，默认登入账号密码: root / admin@123
+
+<table>
+    <tr>
+        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/85a0c746-d44a-4168-8b4b-a1e7273cdd59"?raw=true"></td>
     </tr>
 </table>
 
 <table>
     <tr>
-        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/fb30f747-a2af-4fc8-b3cc-05c71a044da0"?raw=true"></td>
+        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/bc066047-15d3-45fc-b363-ded37bfe1121"?raw=true"></td>
     </tr>
 </table>
 
 <table>
     <tr>
-        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/b36d9b53-0696-4e44-b847-1019e7739201"?raw=true"></td>
+        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/c775abbe-0927-4a1f-b4e6-faf531784aea"?raw=true"></td>
     </tr>
 </table>
 
 <table>
     <tr>
-        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/7a63c464-adde-4775-9a30-d70b14aa0d1e"?raw=true"></td>
+        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/78ad0e29-abfd-47d6-a132-c5b49b48bc95"?raw=true"></td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td width="50%" align="center"><img src="https://github.com/user-attachments/assets/bfe99dc9-ecb8-4c47-9f68-2312e447f309"?raw=true"></td>
     </tr>
 </table>
 
